@@ -18,27 +18,39 @@ import RecommendCarCard from "../../components/UI/recommendCarCard";
 import recommendCarsData from "../../assets/DummyData/recommendCars";
 
 const energyObj = {
-    icon: { Energy_icon },
+    icon: Energy_icon,
     title: "Energy",
     percentage: "45",
+    id: 'first-pie',
+    first_color: '#b37efc',
+    second_color: '#ffffff',
 };
 
 const rangeObj = {
-    icon: { Range_icon },
+    icon: Range_icon,
     title: "Range",
     percentage: "157k",
+    id: 'second-pie',
+    first_color: '#f4f5f9',
+    second_color: '#ff7e86',
 };
 
 const breakObj = {
-    icon: { Break_icon },
+    icon: Break_icon,
     title: "Break fluid",
     percentage: "9",
+    id: 'third-pie',
+    first_color: '#f4f5f9',
+    second_color: '#a162f7',
 };
 
 const tireObj = {
-    icon: { Tire_icon },
+    icon: Tire_icon,
     title: "Tire Wear",
     percentage: "25",
+    id: 'fourth-pie',
+    first_color: '#f4f5f9',
+    second_color: '#f6cc0d',
 };
 
 const Dashboard = () => {
