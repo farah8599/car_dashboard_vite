@@ -5,6 +5,9 @@ import car4 from "../Images/car4.png";
 import car5 from "../Images/car5.png";
 import car6 from "../Images/car6.png";
 
+import { addDoc, collection } from "firebase/firestore";
+import { db } from '../../firebase/FirebaseInit'
+
 const bookingCars = [
   {
     id: "01",
@@ -88,5 +91,10 @@ const bookingCars = [
     imgUrl: car3,
   },
 ];
+
+export function importBookingCars(){
+  const carsCollection = collection(db, "booking_cars");
+  bookingCars.map((car) => addDoc(carsCollection, car));
+}
 
 export default bookingCars;

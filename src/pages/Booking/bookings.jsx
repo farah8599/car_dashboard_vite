@@ -1,13 +1,25 @@
 import React from 'react'
 import './bookings.scss'
-
-import carData from "../../assets/DummyData/bookingCars";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from '../../firebase/FirebaseInit'
+import carData, { importBookingCars } from "../../assets/DummyData/bookingCars";
 import CarItem from "../../components/UI/carItem";
 import Grid_icon from "../../assets/Images/gridIcon.png"
 import Filter_icon from "../../assets/Images/filterIcon.png"
 
+async function getbookingCars() {
+    const carsCollection = collection(db, 'bookingcars')
+  const carsDocs= await getDocs(carsCollection)
+  const cars=[]
+  carsDocs.docs.map((car)=>
+    cars.push(car.data())
+  )
+    return cars;
+};
+const Cars = await getbookingCars();
 
 const Bookings = () => {
+    // importBookingCars();
     return (
         <div className="bookings">
             <div className="booking__wrapper">
@@ -40,7 +52,7 @@ const Bookings = () => {
                 </div>
 
                 <div className="booking__car-list">
-                    {carData?.map((item) => (
+                    {Cars?.map((item) => (
                         <CarItem item={item} key={item.id} />
                     ))}
                 </div>

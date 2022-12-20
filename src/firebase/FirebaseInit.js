@@ -17,9 +17,3 @@ const app = initializeApp(firebaseConfig);
 // It will be imported into your react app whenever it is needed
 
 export const db = getFirestore(app);
-
-    // firestore.collection('users').doc('ID');
-    // //OR
-    // firestore.doc('/users/ID');
-
-    // export default firebase;
