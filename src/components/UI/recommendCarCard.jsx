@@ -28,7 +28,7 @@ const RecommendCarCard = (props) => {
                             {retweet}k
                         </p>
                         <p>
-                            <i class="ri-settings-2-line"></i>
+                            <i className="ri-settings-2-line"></i>
                         </p>
                         <p>
                             <img src={spark_icon} alt="" />

@@ -17,6 +17,9 @@ import RecommendCarCard from "../../components/UI/recommendCarCard";
 
 import recommendCarsData from "../../assets/DummyData/recommendCars";
 
+import { addDoc, collection } from "firebase/firestore";
+import { db } from '../../firebase/FirebaseInit'
+
 const energyObj = {
     icon: Energy_icon,
     title: "Energy",
@@ -80,6 +83,19 @@ const Dashboard = () => {
                     {recommendCarsData.map((item) => (
                         <RecommendCarCard item={item} key={item.id} />
                     ))}
+                </div>
+                <div className="button">
+                    <a onClick={() => {
+                        const recommendedCars = collection(db, 'recommendedCars')
+                        addDoc(recommendedCars, { recommendCarsData }).then(response => {
+                            console.log(response)
+                        }
+                        ).catch(error => {
+                            console.log(error.message)
+                        })
+                    }}>
+                        Save
+                    </a>
                 </div>
             </div>
         </div >
