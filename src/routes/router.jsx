@@ -7,7 +7,6 @@ import Booking from "../pages/Booking/bookings";
 
 const Router = () => {
     return (
-
         <Routes>
             <Route path="/"
                 element={<Navigate to='/dashboard' element={<Dashboard />} />}

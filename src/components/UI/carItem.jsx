@@ -1,16 +1,22 @@
 
 import React from "react";
+import { increment } from "../../redux/Counter";
+import { useDispatch, useSelector } from "react-redux";
 
 const CarItem = (props) => {
 
   const { category, type, rentPrice, imgUrl, carName, groupSize } = props.item;
+  const { count } = useSelector(state => state.counter)
+  const dispatch = useDispatch();
   return (
     <div className="car__item">
       <div className="car__item-top">
         <div className="car__item-tile">
           <h3><b>{carName}</b></h3>
           <span>
-            <i className="ri-heart-line"></i>
+            <i className="ri-heart-line" onClick={() => {
+              dispatch(increment())
+            }}></i>
           </span>
         </div>
         <p>{category}</p>
@@ -32,6 +38,7 @@ const CarItem = (props) => {
         </div>
 
         <p className="car__rent"><b>${rentPrice}</b>/d</p>
+        <p>{count}</p>
       </div>
     </div>
   );
