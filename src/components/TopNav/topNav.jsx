@@ -5,8 +5,11 @@ import profileImg from "../../assets/Images/profile.png";
 import notification from "../../assets/Images/notification.png"
 import search from "../../assets/Images/searchIcon.png"
 import "./topNav.scss";
+import { useSelector } from "react-redux";
+
 
 const TopNav = () => {
+    const { count } = useSelector(state => state.counter)
     return (
         <div className="top__nav">
             <div className="top__nav-wrapper">
@@ -15,6 +18,9 @@ const TopNav = () => {
                     <span>
                         <input type="text" placeholder=" Search or type" />
                     </span>
+                </div>
+                <div className="counter">
+                    <p>{count}</p>
                 </div>
                 <div className="top__nav-right">
                     <span className="notification">

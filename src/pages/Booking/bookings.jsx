@@ -10,11 +10,11 @@ import Filter_icon from "../../assets/Images/filterIcon.png"
 
 async function getbookingCars() {
     const carsCollection = collection(db, 'bookingcars')
-  const carsDocs= await getDocs(carsCollection)
-  const cars=[]
-  carsDocs.docs.map((car)=>
-    cars.push(car.data())
-  )
+    const carsDocs = await getDocs(carsCollection)
+    const cars = []
+    carsDocs.docs.map((car) =>
+        cars.push(car.data())
+    )
     return cars;
 };
 const Cars = await getbookingCars();

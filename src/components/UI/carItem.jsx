@@ -1,12 +1,12 @@
 
 import React from "react";
 import { increment } from "../../redux/Counter";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 
 const CarItem = (props) => {
 
   const { category, type, rentPrice, imgUrl, carName, groupSize } = props.item;
-  const { count } = useSelector(state => state.counter)
+
   const dispatch = useDispatch();
   return (
     <div className="car__item">
@@ -38,7 +38,6 @@ const CarItem = (props) => {
         </div>
 
         <p className="car__rent"><b>${rentPrice}</b>/d</p>
-        <p>{count}</p>
       </div>
     </div>
   );
