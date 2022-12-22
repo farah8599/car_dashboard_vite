@@ -1,7 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore';
-import { collection, getDocs } from "firebase/firestore";
-
+import { collection, getDocs,getDoc,doc,setDoc } from "firebase/firestore";
+import { useDispatch } from "react-redux";
+import { increment,decrement } from "../redux/Counter";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBe4zbAf5G4xlthBNeeFXwxQrDBORQyFbs",
@@ -25,7 +26,30 @@ export async function getbookingCars() {
     const carsDocs = await getDocs(carsCollection)
     const cars = []
     carsDocs.docs.map((car) =>
-        cars.push(car.data())
+        cars.push({cid:car.id,...car.data()})
     )
     return cars;
 };
+
+
+
+async function isLiked(likedCar){
+
+    const docRef = doc(db, 'likedCars', likedCar.cid)
+    const docData = await getDoc(docRef)
+
+ 
+    if (docData.data()===undefined) {
+      console.log('No such document exista!');
+      const dbRef= doc(db, "likedCars",likedCar.cid);
+      setDoc(dbRef, likedCar)
+      return 1;
+    
+    } else {
+      console.log('Document data:', docData.data());
+     return 0;
+    }
+
+     
+}
+export default isLiked;

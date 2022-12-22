@@ -1,21 +1,34 @@
 
-import React from "react";
-import { increment } from "../../redux/Counter";
-import { useDispatch} from "react-redux";
+import React, { useState } from "react";
+import { decrement, increment } from "../../redux/Counter";
+import { useDispatch } from "react-redux";
+import isLiked from "../../firebase/FirebaseInit";
+import { async } from "@firebase/util";
 
 const CarItem = (props) => {
 
   const { category, type, rentPrice, imgUrl, carName, groupSize } = props.item;
+  const dispatch = useDispatch()
+  const [isLikedVar,setActive]=useState(true)
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   return (
     <div className="car__item">
       <div className="car__item-top">
         <div className="car__item-tile">
           <h3><b>{carName}</b></h3>
           <span>
-            <i className="ri-heart-line" onClick={() => {
-              dispatch(increment())
+            <i className={ `${isLikedVar? "ri-heart-line":"ri-heart-fill"}`} onClick={async () => {
+              {
+                if (await isLiked(props.item)) {
+                  dispatch(increment())  
+                  setActive(false)
+                }
+                else {
+                  dispatch(decrement())
+                  setActive(true)
+                }
+              }
             }}></i>
           </span>
         </div>
