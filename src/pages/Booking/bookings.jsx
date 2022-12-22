@@ -6,10 +6,10 @@ import carData, { importBookingCars } from "../../assets/DummyData/bookingCars";
 import CarItem from "../../components/UI/carItem";
 import Grid_icon from "../../assets/Images/gridIcon.png"
 import Filter_icon from "../../assets/Images/filterIcon.png"
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Bookings = () => {
-    const Cars = useSelector((state) => state.filter.filteredData)
+    const Cars= useSelector((state)=>state.filter.filteredData)
     // importBookingCars();
     return (
         <div className="bookings">
@@ -43,8 +43,8 @@ const Bookings = () => {
                 </div>
 
                 <div className="booking__car-list">
-                    {Cars?.map((item) => (
-                        <CarItem item={item} key={item.id} />
+                    {Cars?.map((item,index) => (
+                        <CarItem item={item} key={index} />
                     ))}
 
                 </div>
