@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from './Counter'
-
+import filterReducer from './Filter'
 export default configureStore({
     reducer: {
-        counter: counterReducer
+        counter: counterReducer,
+        filter: filterReducer
     }
 })

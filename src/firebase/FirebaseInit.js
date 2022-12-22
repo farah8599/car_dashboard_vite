@@ -1,5 +1,7 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from 'firebase/firestore';
+import { collection, getDocs } from "firebase/firestore";
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyBe4zbAf5G4xlthBNeeFXwxQrDBORQyFbs",
@@ -17,3 +19,13 @@ const app = initializeApp(firebaseConfig);
 // It will be imported into your react app whenever it is needed
 
 export const db = getFirestore(app);
+
+export async function getbookingCars() {
+    const carsCollection = collection(db, 'bookingcars')
+    const carsDocs = await getDocs(carsCollection)
+    const cars = []
+    carsDocs.docs.map((car) =>
+        cars.push(car.data())
+    )
+    return cars;
+};

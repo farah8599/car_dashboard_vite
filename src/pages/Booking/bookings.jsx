@@ -6,20 +6,10 @@ import carData, { importBookingCars } from "../../assets/DummyData/bookingCars";
 import CarItem from "../../components/UI/carItem";
 import Grid_icon from "../../assets/Images/gridIcon.png"
 import Filter_icon from "../../assets/Images/filterIcon.png"
-
-
-async function getbookingCars() {
-    const carsCollection = collection(db, 'bookingcars')
-    const carsDocs = await getDocs(carsCollection)
-    const cars = []
-    carsDocs.docs.map((car) =>
-        cars.push(car.data())
-    )
-    return cars;
-};
-const Cars = await getbookingCars();
+import { useSelector } from 'react-redux';
 
 const Bookings = () => {
+    const Cars = useSelector((state) => state.filter.filteredData)
     // importBookingCars();
     return (
         <div className="bookings">
@@ -56,6 +46,7 @@ const Bookings = () => {
                     {Cars?.map((item) => (
                         <CarItem item={item} key={item.id} />
                     ))}
+
                 </div>
             </div>
         </div>

@@ -5,10 +5,15 @@ import profileImg from "../../assets/Images/profile.png";
 import notification from "../../assets/Images/notification.png"
 import search from "../../assets/Images/searchIcon.png"
 import "./topNav.scss";
-import { useSelector } from "react-redux";
-
+import { useDispatch, useSelector } from "react-redux";
+import { filter } from "../../redux/Filter"
 
 const TopNav = () => {
+    const dispatch = useDispatch()
+    const onChangeHandler = (event) => {
+        console.log(event.target.value)
+        dispatch(filter(event.target.value))
+    }
     const { count } = useSelector(state => state.counter)
     return (
         <div className="top__nav">
@@ -16,7 +21,7 @@ const TopNav = () => {
                 <div className="search__box">
                     <img src={search} alt="" />
                     <span>
-                        <input type="text" placeholder=" Search or type" />
+                        <input type="text" onChange={onChangeHandler} placeholder=" Search or type" />
                     </span>
                 </div>
                 <div className="counter">
